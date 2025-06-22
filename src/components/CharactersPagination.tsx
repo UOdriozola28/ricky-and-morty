@@ -1,0 +1,37 @@
+import type { CharactersProp, PaginationProps } from "../types"
+import Pagination from "./Pagination"
+
+interface Props extends PaginationProps {
+  characters: CharactersProp
+}
+
+function ListOfCharacters({ characters }: { characters: CharactersProp }) {
+  return (characters.map((char) => {
+    return (
+      <section className="character bg-cyan-800 p-4 rounded-xl" key={char.id}>
+        <img src={char.image} alt={char.name} className="rounded-xl transition ease-in hover:scale-105 cursor-pointer" />
+        <div className="mt-4">
+          <h3 className="font-bold text-yellow-300">
+            {char.name}
+            <span className="text-white "> - {char.species}</span>
+          </h3>
+          <span className="italic">{char.gender}</span>
+        </div>
+      </section>
+    )
+  }))
+}
+
+function CharactersPagination({ characters, totalPages, page, hasPrevius, hasNext, onChangePage }: Props) {
+  return (
+    <div className="characters">
+      {characters.length > 0
+        ? <ListOfCharacters characters={characters} />
+        : 'Sin resultados'
+      }
+      <Pagination onChangePage={onChangePage} totalPages={totalPages} page={page} hasPrevius={hasPrevius} hasNext={hasNext} />
+    </div>
+  )
+}
+
+export default CharactersPagination
