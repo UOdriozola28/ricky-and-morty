@@ -6,8 +6,7 @@ import { API_CHARACTERS_URL } from "../consts"
 function useCharacterPagination() {
 
   const [characters, setCharacters] = useState<CharactersProp>([])
-
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(() => Number(localStorage.getItem('currentPage')) || 1)
   const [hasNext, setHasNext] = useState(true)
   const [hasPrevius, setHasPrevius] = useState(true)
   const [totalPages, setTotalPages] = useState(0);
@@ -33,6 +32,7 @@ function useCharacterPagination() {
 
   const handleNextOrPreviusPage = ({ page }: NextOrPreviusPage) => () => {
     setPage(page);
+    localStorage.setItem('currentPage', JSON.stringify(page))
   }
 
   return { characters, totalPages, page, hasPrevius, hasNext, handleNextOrPreviusPage }
