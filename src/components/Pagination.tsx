@@ -12,7 +12,7 @@ function Pagination({ onChangePage, totalPages, page: currentPage, hasPrevius, h
   arrayPages = arrayPages.slice((currentPage - 5 < 0 ? 0 : (currentPage - 5) - addItemsPrev), (currentPage + 4 > totalPages ? totalPages : (currentPage + 4) + addItemsNext))
 
   return (
-    <nav aria-label="Page navigation" className="w-full overflow-x-auto text-center">
+    <nav id="navigation" aria-label="Page navigation" className="w-full overflow-x-auto text-center">
       <ul className="inline-flex flex-nowrap text-sm border border-gray-700 rounded-lg">
 
         <li>

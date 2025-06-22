@@ -9,13 +9,15 @@ function ListOfCharacters({ characters }: { characters: CharactersProp }) {
   return (characters.map((char) => {
     return (
       <section className="character bg-cyan-800 p-4 rounded-xl" key={char.id}>
-        <img
-          src={char.image}
-          alt={char.name}
-          className="rounded-xl transition ease-in hover:scale-105 cursor-pointer"
-          loading="lazy"
-          style={{ objectFit: "cover", width: "300px" }}
-        />
+        <picture>
+          <img
+            src={char.image}
+            alt={char.name}
+            className="rounded-xl transition ease-in hover:scale-105 cursor-pointer"
+            loading="lazy"
+            style={{ objectFit: "cover", width: "300px" }}
+          />
+        </picture>
         <div className="mt-4">
           <h3 className="font-bold text-yellow-300">
             {char.name}
