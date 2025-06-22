@@ -23,13 +23,20 @@ function ListOfCharacters({ characters }: { characters: CharactersProp }) {
 }
 
 function CharactersPagination({ characters, totalPages, page, hasPrevius, hasNext, onChangePage }: Props) {
+
+  const charactersLgt = characters.length > 0
+
   return (
     <div className="characters">
-      {characters.length > 0
-        ? <ListOfCharacters characters={characters} />
+      {charactersLgt
+        ? (
+          <>
+            <ListOfCharacters characters={characters} />
+            <Pagination onChangePage={onChangePage} totalPages={totalPages} page={page} hasPrevius={hasPrevius} hasNext={hasNext} />
+          </>
+        )
         : 'Sin resultados'
       }
-      <Pagination onChangePage={onChangePage} totalPages={totalPages} page={page} hasPrevius={hasPrevius} hasNext={hasNext} />
     </div>
   )
 }
